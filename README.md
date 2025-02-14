@@ -10,4 +10,4 @@ Source URL: [Cupcake Corner: Introduction](https://www.hackingwithswift.com/book
 
 Thank you [Paul Hudson - @twostraws](https://x.com/twostraws)
 
-Made with :heart: by @cewitte
+Made with :heart: by [@cewitte](https://x.com/cewitte)
