@@ -8,6 +8,14 @@ As we continue to dig deeper and deeper into `Codable`, we'll see how flexible a
 
 Source URL: [Cupcake Corner: Introduction](https://www.hackingwithswift.com/books/ios-swiftui/cupcake-corner-introduction)
 
-Thank you [Paul Hudson - @twostraws](https://x.com/twostraws)
+### 1. Sending and receiving Codable data with URLSession and SwiftUI ([Page link](https://www.hackingwithswift.com/books/ios-swiftui/sending-and-receiving-codable-data-with-urlsession-and-swiftui))
 
-Made with :heart: by [@cewitte](https://x.com/cewitte)
+Branch: `urlsession-sending-receiving-data`
+
+iOS gives us built-in tools for sending and receiving data from the internet, and if we combine it with Codable support then it’s possible to convert Swift objects to JSON for sending, then receive back JSON to be converted back to Swift objects. Even better, when the request completes we can immediately assign its data to properties in SwiftUI views, causing our user interface to update.
+
+To demonstrate this we can load some example music JSON data from Apple’s iTunes API, and show it all in a SwiftUI List. Apple’s data includes lots of information, but we’re going to whittle it down to just two types: a Result will store a track ID, its name, and the album it belongs to, and a Response will store an array of results.
+
+### Acknowledgements
+
+Thank you [Paul Hudson - @twostraws](https://x.com/twostraws)
