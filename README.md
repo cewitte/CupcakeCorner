@@ -16,6 +16,12 @@ iOS gives us built-in tools for sending and receiving data from the internet, an
 
 To demonstrate this we can load some example music JSON data from Apple’s iTunes API, and show it all in a SwiftUI List. Apple’s data includes lots of information, but we’re going to whittle it down to just two types: a Result will store a track ID, its name, and the album it belongs to, and a Response will store an array of results.
 
+### 2. Loading an image from a remote server ([Page Link](https://www.hackingwithswift.com/books/ios-swiftui/loading-an-image-from-a-remote-server))
+
+Branch: `loading-remote-image`
+
+SwiftUI’s Image view works great with images in your app bundle, but if you want to load a remote image from the internet you need to use AsyncImage instead. These are created using an image URL rather than a simple asset name or Xcode-generated constant, but SwiftUI takes care of all the rest for us – it downloads the image, caches the download, and displays it automatically.
+
 ### Acknowledgements
 
 Thank you [Paul Hudson - @twostraws](https://x.com/twostraws)

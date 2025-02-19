@@ -23,40 +23,19 @@ struct ContentView: View {
     
     var body: some View {
         
-        List(results, id: \.trackId) { item in
-            VStack(alignment: .leading) {
-                Text(item.trackName)
-                    .font(.headline)
-                Text(item.collectionName)
-                    .font(.caption)
+        AsyncImage(url: URL(string: "https://picsum.photos/200/300")!) { phase in
+            if let image = phase.image {
+                image
+                    .resizable()
+                    .scaledToFit()
+            } else if phase.error != nil {
+                Text("There was an error loading the image")
+            } else {
+                ProgressView()
             }
         }
-        .task {
-            await loadData()
-        }
+        .frame(width: 200, height: 300)
         
-    }
-    
-    func loadData() async {
-        // 1. Get URL from Apple's iTunes service
-        guard let url = URL(string: "https://itunes.apple.com/search?term=taylor+swift&entity=song") else {
-            print("Invalid URL")
-            return
-        }
-        
-        do {
-            // 2. Get data from URL
-            let (data, _) = try await URLSession.shared.data(from: url)
-
-            
-            // 3. Parse received data into results
-            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-                results = decodedResponse.results
-            }
-            
-        } catch {
-            print("Invalid data: \(error)")
-        }
     }
 }
 
