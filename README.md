@@ -42,6 +42,12 @@ To fix this we need to tell Swift exactly how it should encode and decode our da
 
 Inside the enum you need to write one case for each property you want to save, along with a raw value containing the name you want to give it. In our case, that means saying that _name – the underlying storage for our name property – should be written out as the string "name", without an underscore.
 
+### 5. Adding haptic effects ([Page Link](https://www.hackingwithswift.com/books/ios-swiftui/adding-haptic-effects))
+
+Branch: `haptic-effects`
+
+SwiftUI has built-in support for simple haptic effects, which use Apple's Taptic Engine to make the phone vibrate in various ways. We have two options for this in iOS, easy and complete – I'll show you both so you know what's possible, but I think it's fair to say you'll want to stick to the easy option unless you have very specific needs!
+
 ### Acknowledgements
 
 Copyright © [Paul Hudson - @twostraws](https://x.com/twostraws) (Thank you, Mr. Hudson)!
