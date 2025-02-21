@@ -7,34 +7,30 @@
 
 import SwiftUI
 
-struct Response: Codable {
-    var results: [Result]
-}
-
-struct Result: Codable {
-    var trackId: Int
-    var trackName: String
-    var collectionName: String
-}
-
 struct ContentView: View {
-    
-    @State private var results = [Result]()
-    
+    @State private var username = ""
+    @State private var email = ""
+
     var body: some View {
+        var disabledForm: Bool {
+            username.count < 5 || email.count < 5
+        }
         
-        AsyncImage(url: URL(string: "https://picsum.photos/200/300")!) { phase in
-            if let image = phase.image {
-                image
-                    .resizable()
-                    .scaledToFit()
-            } else if phase.error != nil {
-                Text("There was an error loading the image")
-            } else {
-                ProgressView()
+        Form {
+            Section {
+                TextField("Username", text: $username)
+                TextField("Email", text: $email)
+                
+                Section {
+                    Button("Create account") {
+                        print("Creating account")
+                    }
+                }
+                .disabled(disabledForm)
+                
             }
         }
-        .frame(width: 200, height: 300)
+        
         
     }
 }

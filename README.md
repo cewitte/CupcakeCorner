@@ -22,6 +22,16 @@ Branch: `loading-remote-image`
 
 SwiftUI’s Image view works great with images in your app bundle, but if you want to load a remote image from the internet you need to use AsyncImage instead. These are created using an image URL rather than a simple asset name or Xcode-generated constant, but SwiftUI takes care of all the rest for us – it downloads the image, caches the download, and displays it automatically.
 
+### 3. Validating and disabling forms ([Page Link](https://www.hackingwithswift.com/books/ios-swiftui/validating-and-disabling-forms))
+
+Branch: `validating-disabling-forms`
+
+SwiftUI’s `Form` view lets us store user input in a really fast and convenient way, but sometimes it’s important to go a step further – to check that input to make sure it’s valid before we proceed.
+
+Well, we have a modifier just for that purpose: `disabled()`. This takes a condition to check, and if the condition is true then whatever it’s attached to won’t respond to user input – buttons can’t be tapped, sliders can’t be dragged, and so on. You can use simple properties here, but any condition will do: reading a computed property, calling a method, and so on.
+
 ### Acknowledgements
 
 Thank you [Paul Hudson - @twostraws](https://x.com/twostraws)
+
+Made with ❤️ by @cewitte
