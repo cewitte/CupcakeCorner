@@ -30,8 +30,20 @@ SwiftUI’s `Form` view lets us store user input in a really fast and convenient
 
 Well, we have a modifier just for that purpose: `disabled()`. This takes a condition to check, and if the condition is true then whatever it’s attached to won’t respond to user input – buttons can’t be tapped, sliders can’t be dragged, and so on. You can use simple properties here, but any condition will do: reading a computed property, calling a method, and so on.
 
+### 4. Adding `Codable` conformance to an `@Observable` class ([Page Link](https://www.hackingwithswift.com/books/ios-swiftui/adding-codable-conformance-to-an-observable-class))
+
+Branch: `codable-conformance`
+
+If all the properties of a type already conform to `Codable`, then the type itself can conform to `Codable` with no extra work – Swift will synthesize the code required to archive and unarchive your type as needed. However, things are a little trickier when working with classes that use the `@Observable` macro because of the way Swift rewrites our code.
+
+Remember, the `@Observable` macro is quietly rewriting our class so that it can be monitored by SwiftUI, and here that rewriting is leaking – we can see it happening, which might cause all sorts of problems. If you're trying to send a "name" value to a server, it might have no idea what to do with "_name", for example.
+
+To fix this we need to tell Swift exactly how it should encode and decode our data. This is done by nesting an enum inside our class called `CodingKeys`, and making it have a String raw value and a conformance to the `CodingKey` protocol. Yes, that's a bit confusing – the enum is called `CodingKeys` and the protocol is `CodingKey`, but it does matter.
+
+Inside the enum you need to write one case for each property you want to save, along with a raw value containing the name you want to give it. In our case, that means saying that _name – the underlying storage for our name property – should be written out as the string "name", without an underscore.
+
 ### Acknowledgements
 
-Thank you [Paul Hudson - @twostraws](https://x.com/twostraws)
+Copyright © [Paul Hudson - @twostraws](https://x.com/twostraws) (Thank you, Mr. Hudson)!
 
 Made with ❤️ by @cewitte
