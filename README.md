@@ -16,6 +16,8 @@ Our address fields are currently considered valid if they contain anything, even
 
 Branch: `challenge-01`
 
+![Challenge 1](/whitespace_verification.gif)
+
 ### Acknowledgments
 
 Original code created by: [Paul Hudson - @twostraws](https://x.com/twostraws) (Thank you!)
