@@ -13,6 +13,9 @@ struct CheckoutView: View {
     @State private var confirmationMessage = ""
     @State private var showConfirmation = false
     
+    @State private var networkErrorMessage = ""
+    @State private var showNetworkError = false
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -44,6 +47,11 @@ struct CheckoutView: View {
         } message: {
             Text(confirmationMessage)
         }
+        .alert("Oops!", isPresented: $showNetworkError) {
+            Button("OK") {}
+        } message: {
+            Text(networkErrorMessage)
+        }
     }
     
     func placeOrder() async {
@@ -55,7 +63,9 @@ struct CheckoutView: View {
         let url = URL(string: "https://reqres.in/api/cupcakes")!
         var request = URLRequest(url: url)
         request.setValue( "application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
+        
+        // introducing a bug to get the network error message below
+//        request.httpMethod = "POST"
         
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
@@ -66,6 +76,8 @@ struct CheckoutView: View {
             showConfirmation = true
         } catch {
             print("Check out failed: \(error.localizedDescription)")
+            networkErrorMessage = "A network error occurred. Please try again later."
+            showNetworkError = true
         }
     }
 }

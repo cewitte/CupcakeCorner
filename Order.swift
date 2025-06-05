@@ -43,8 +43,16 @@ class Order: Codable {
     var city = ""
     var zip = ""
     
+//    Our address fields are currently considered valid if they contain anything, even if it’s just only whitespace. Improve the validation to make sure a string of pure whitespace is invalid.
     var hasValidAddress: Bool {
-        if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
+        if name.isEmpty ||
+            name.isWhitespace ||
+            streetAddress.isEmpty ||
+            streetAddress.isWhitespace ||
+            city.isEmpty ||
+            city.isWhitespace ||
+            zip.isEmpty ||
+            zip.isWhitespace {
             return false
         }
         
@@ -70,3 +78,15 @@ class Order: Codable {
         return cost
     }
 }
+
+extension String {
+    var isWhitespace: Bool {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+}
+
+// Exemplos de uso:
+//print("   ".isWhitespace) // true
+//print("\n\t".isWhitespace) // true
+//print("Hello".isWhitespace) // false
+//print(" Hello ".isWhitespace) // false
