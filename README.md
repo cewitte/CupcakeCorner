@@ -24,7 +24,19 @@ Branch: `challenge-02`
 
 ![Network Error](/network_error.png)
 
-### Acknowledgments
+### Accessibility challenge
+
+Branch: `accessibility-challenge`
+
+>The check out view in Cupcake Corner uses an image and loading spinner that don’t add anything to the UI, so find a way to make the screenreader not read them out.
+
+This is obtained by attaching the following modifier to the cupcake image:
+
+```swift
+.accessibilityHidden(true)
+```
+
+## Acknowledgments
 
 Original code created by: [Paul Hudson - @twostraws](https://x.com/twostraws) (Thank you!)
 
